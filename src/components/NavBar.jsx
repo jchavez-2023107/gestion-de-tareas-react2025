@@ -1,25 +1,28 @@
 import React from 'react';
-import { Flex, HStack, Box, Button } from '@chakra-ui/react';
+import { Flex, HStack, Box, Button, useBreakpointValue } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import ColorModeToggle from './ColorModeToggle';
 
 export default function NavBar() {
+  const btnSize = useBreakpointValue({ base: 'sm', md: 'md' });
+
   return (
     <Flex
       as="nav"
       bg="brand.600"
-      px={6}
+      px={{ base: 4, md: 8 }}
       py={4}
       align="center"
-      justify="space-between"
     >
       {/* Left links */}
       <HStack spacing={4}>
         <Button
           as={NavLink}
           to="/"
+          end
           variant="ghost"
           color="white"
+          size={btnSize}
           _activeLink={{ bg: 'brand.700' }}
         >
           Lista
@@ -29,6 +32,7 @@ export default function NavBar() {
           to="/calendar"
           variant="ghost"
           color="white"
+          size={btnSize}
           _activeLink={{ bg: 'brand.700' }}
         >
           Calendario
@@ -38,39 +42,38 @@ export default function NavBar() {
           to="/trash"
           variant="ghost"
           color="white"
+          size={btnSize}
           _activeLink={{ bg: 'brand.700' }}
         >
           Papelera
         </Button>
       </HStack>
 
-      {/* Centered link */}
-      <Box>
+      {/* Spacer */}
+      <Box flex={1} />
+
+      {/* Right links */}
+      <HStack spacing={4} mr={{ base: 2, md: 4 }}>
         <Button
           as={NavLink}
           to="/thank-you"
           variant="ghost"
           color="white"
-          align="center"
-          right="5.75rem"
+          size={btnSize}
           _activeLink={{ bg: 'brand.700' }}
         >
           Agradecimientos
         </Button>
-      </Box>
-
-      {/* Right controls */}
-      <HStack spacing={4}>
         <Button
           as={NavLink}
           to="/new"
           colorScheme="teal"
           variant="solid"
-          right="3.5rem"
+          size={btnSize}
         >
           Nueva Tarea
         </Button>
-        <ColorModeToggle />
+        
       </HStack>
     </Flex>
   );
