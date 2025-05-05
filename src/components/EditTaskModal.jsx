@@ -14,6 +14,7 @@ import {
   Select,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
+import React from 'react';
 
 export default function EditTaskModal({ isOpen, onClose, task, dispatch }) {
   const [title, setTitle] = useState('');

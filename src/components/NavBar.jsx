@@ -1,3 +1,4 @@
+import React from 'react';
 import { Flex, HStack, Box, Button } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import ColorModeToggle from './ColorModeToggle';
@@ -12,6 +13,7 @@ export default function NavBar() {
       align="center"
       justify="space-between"
     >
+      {/* Left links */}
       <HStack spacing={4}>
         <Button
           as={NavLink}
@@ -42,13 +44,29 @@ export default function NavBar() {
         </Button>
       </HStack>
 
+      {/* Centered link */}
+      <Box>
+        <Button
+          as={NavLink}
+          to="/thank-you"
+          variant="ghost"
+          color="white"
+          align="center"
+          right="5.75rem"
+          _activeLink={{ bg: 'brand.700' }}
+        >
+          Agradecimientos
+        </Button>
+      </Box>
+
+      {/* Right controls */}
       <HStack spacing={4}>
         <Button
           as={NavLink}
           to="/new"
           colorScheme="teal"
           variant="solid"
-          right="4.5rem"
+          right="3.5rem"
         >
           Nueva Tarea
         </Button>

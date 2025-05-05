@@ -9,6 +9,7 @@ import {
   } from '@chakra-ui/react';
   import { RepeatIcon } from '@chakra-ui/icons';
   import { useTasks } from '../context/TaskContext';
+  import React from 'react';
   
   export default function TrashView() {
     const { deleted, dispatch } = useTasks();
