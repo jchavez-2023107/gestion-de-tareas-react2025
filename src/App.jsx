@@ -7,6 +7,9 @@ const TaskList = lazy(() => import("./components/TaskList"));
 const TaskForm = lazy(() => import("./components/TaskForm"));
 const CalendarView = lazy(() => import("./components/CalendarView"));
 const TrashView = lazy(() => import("./components/TrashView"));
+const ThankYouSoMuchPage = lazy(() =>
+  import("./components/ThankYouSoMuchPage")
+);
 
 export default function App() {
   return (
@@ -28,6 +31,10 @@ export default function App() {
             <Route path="/new" element={<TaskForm />} />
             <Route path="/calendar" element={<CalendarView />} />
             <Route path="/trash" element={<TrashView />} />
+            <Route
+              path="/thank-you"
+              element={<ThankYouSoMuchPage />}
+            />
           </Routes>
         </Suspense>
       </Container>

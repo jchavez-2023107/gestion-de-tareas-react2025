@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Box,
   Heading,
@@ -21,26 +22,25 @@ import {
   MenuList,
   MenuItem,
   Badge,
-} from '@chakra-ui/react'
-import { DeleteIcon, EditIcon, ChevronDownIcon } from '@chakra-ui/icons'
-import { useTasks } from '../context/TaskContext'
-import { useState } from 'react'
-import EditTaskModal from './EditTaskModal'
+} from '@chakra-ui/react';
+import { DeleteIcon, EditIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { useTasks } from '../context/TaskContext';
+import EditTaskModal from './EditTaskModal';
 
 export default function TaskList() {
-  const { tasks, dispatch } = useTasks()
-  const bg = useColorModeValue('white', 'gray.700')
-  const descColor = useColorModeValue('gray.700', 'gray.300')
-  const [filter, setFilter] = useState('all')
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [current, setCurrent] = useState(null)
+  const { tasks, dispatch } = useTasks();
+  const bg = useColorModeValue('white', 'gray.700');
+  const descColor = useColorModeValue('gray.700', 'gray.300');
+  const [filter, setFilter] = useState('all');
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [current, setCurrent] = useState(null);
 
-  const openEdit = t => {
-    setCurrent(t)
-    onOpen()
-  }
+  const openEdit = (t) => {
+    setCurrent(t);
+    onOpen();
+  };
 
-  const filtered = tasks.filter(t => filter === 'all' || t.status === filter)
+  const filtered = tasks.filter((t) => filter === 'all' || t.status === filter);
 
   return (
     <Box>
@@ -79,7 +79,7 @@ export default function TaskList() {
           w="full"
           justifyItems="center"
         >
-          {filtered.map(task => (
+          {filtered.map((task) => (
             <Card
               key={task.id}
               bg={bg}
@@ -122,7 +122,7 @@ export default function TaskList() {
                       mr={2}
                     />
                     <MenuList>
-                      {['todo', 'inProgress', 'completed'].map(s => (
+                      {['todo', 'inProgress', 'completed'].map((s) => (
                         <MenuItem
                           key={s}
                           onClick={() =>
@@ -149,6 +149,8 @@ export default function TaskList() {
                     onClick={() => openEdit(task)}
                   />
                   <IconButton
+                    data-testid={`delete-${task.id}`}
+                    aria-label="Eliminar tarea"
                     icon={<DeleteIcon />}
                     size="sm"
                     colorScheme="red"
@@ -210,5 +212,5 @@ export default function TaskList() {
         />
       )}
     </Box>
-  )
+  );
 }
