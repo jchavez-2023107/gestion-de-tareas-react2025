@@ -1,68 +1,125 @@
+/* index.css */
+
+/* Importa primero los estilos base */
+@import 'react-calendar/dist/Calendar.css';
+
+/* --------------------------------------------------
+   Variables CSS de Chakra (para usarlas en calendar)
+   -------------------------------------------------- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --chakra-colors-brand-50: #e6fffa;
+  --chakra-colors-brand-100: #b2f5ea;
+  --chakra-colors-brand-200: #81e6d9;
+  --chakra-colors-brand-300: #4fd1c5;
+  --chakra-colors-brand-400: #38b2ac;
+  --chakra-colors-brand-500: #319795;
+  --chakra-colors-brand-600: #2c7a7b;
+  --chakra-colors-brand-700: #285e61;
+  --chakra-colors-brand-800: #234e52;
+  --chakra-colors-brand-900: #1d4044;
+  --chakra-colors-white: #fff;
+  --chakra-colors-gray-700: #2d3748;
+  --chakra-colors-gray-500: #a0aec0;
+  --chakra-colors-gray-200: #edf2f7;
+  --chakra-colors-gray-100: #f7fafc;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+/* --------------------------------------------
+   Contenedor del calendario
+   -------------------------------------------- */
+.react-calendar {
+  width: 100% !important;
+  max-width: 400px;
+  background-color: var(--chakra-colors-gray-100);
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin: 0 auto;
+  color: #2d3748;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Modo oscuro */
+[data-theme='dark'] .react-calendar {
+  background-color: var(--chakra-colors-gray-700);
+  color: var(--chakra-colors-gray-100);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Navegación (mes y flechas) */
+.react-calendar__navigation button {
+  color: inherit;
+  font-weight: 600;
+  background: transparent;
+  border: none;
 }
-button:hover {
-  border-color: #646cff;
+.react-calendar__navigation button:disabled {
+  opacity: 0.4;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.react-calendar__navigation__label {
+  font-size: 1rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Días de la semana */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--chakra-colors-gray-500);
+}
+[data-theme='dark'] .react-calendar__month-view__weekdays {
+  color: var(--chakra-colors-gray-200);
+}
+
+/* Tiles (celdas de fechas) */
+.react-calendar__tile {
+  padding: 0.75rem 0;
+  font-size: 0.875rem;
+  background: transparent;
+  border-radius: 0.25rem;
+  transition: background 0.2s;
+}
+.react-calendar__tile:hover {
+  background-color: var(--chakra-colors-brand-50);
+}
+[data-theme='dark'] .react-calendar__tile:hover {
+  background-color: var(--chakra-colors-brand-700);
+}
+
+/* Fecha activa (click) */
+.react-calendar__tile--active {
+  background-color: var(--chakra-colors-brand-500) !important;
+  color: var(--chakra-colors-white) !important;
+}
+
+/* Fechas con tareas: añadimos un punto */
+.react-calendar__tile--hasActive .react-calendar__tile {
+  position: relative;
+}
+.react-calendar__tile--hasActive::after {
+  content: '•';
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: 0.75rem;
+  color: var(--chakra-colors-brand-500);
+}
+
+/* Fechas fuera de mes */
+.react-calendar__tile--neighboringMonth {
+  opacity: 0.4;
+}
+
+/* Media query móvil */
+@media screen and (max-width: 480px) {
+  .react-calendar {
+    max-width: 100%;
   }
-  a:hover {
-    color: #747bff;
+  .react-calendar__tile {
+    padding: 0.5rem 0;
+    font-size: 0.75rem;
   }
-  button {
-    background-color: #f9f9f9;
+  .react-calendar__navigation__label {
+    font-size: 0.875rem;
   }
 }
+
