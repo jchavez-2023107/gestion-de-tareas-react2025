@@ -17,7 +17,7 @@ export default function ColorModeToggle(props) {
       boxShadow="md"
       borderRadius="full"
       zIndex="tooltip"
-      {...props} // posición y otros estilos pasarán desde el padre
+      {...props} // la posición y otros estilos pasarán desde el padre
     />
   );
 }
